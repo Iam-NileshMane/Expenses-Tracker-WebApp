@@ -32,6 +32,12 @@ services:
     depends_on:
       - mysql
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL","curl -f http://localhost:8080 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
 networks:
   appbridge:
